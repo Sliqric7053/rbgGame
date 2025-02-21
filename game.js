@@ -1,6 +1,7 @@
 
 import * as THREE from 'three';
 import { gsap } from 'gsap';
+import confetti from 'canvas-confetti';
 
 class ColorGame {
     constructor() {
@@ -78,6 +79,7 @@ class ColorGame {
     }
 
     reset() {
+        this.isGameOver = false;
         this.colors = this.generateRandomColors(this.numCubes);
         this.pickedColor = this.colors[Math.floor(Math.random() * this.colors.length)];
         this.colorDisplay.textContent = this.pickedColor;
@@ -125,6 +127,16 @@ class ColorGame {
             this.messageDisplay.textContent = 'Correct!';
             this.resetButton.textContent = 'Play Again?';
             this.changeColors(this.pickedColor);
+            
+            // Trigger confetti
+            confetti({
+                particleCount: 150,
+                spread: 180,
+                origin: { y: 0.6 }
+            });
+            
+            // Stop the animation
+            this.isGameOver = true;
         } else {
             gsap.to(cube.scale, {
                 x: 0,
@@ -152,10 +164,12 @@ class ColorGame {
     animate() {
         requestAnimationFrame(() => this.animate());
         
-        this.cubes.forEach(cube => {
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-        });
+        if (!this.isGameOver) {
+            this.cubes.forEach(cube => {
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+            });
+        }
         
         this.renderer.render(this.scene, this.camera);
     }
