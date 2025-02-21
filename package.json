@@ -4,7 +4,9 @@
   "description": "A simple but addictive game that tests how well you know your red-blue-green in hexidecimal format",
   "main": "game.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
   },
   "keywords": [],
   "author": "",
