@@ -1,0 +1,63 @@
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #232323;
+    color: white;
+}
+
+#game-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+#stripe {
+    background: white;
+    height: 30px;
+    text-align: center;
+    color: black;
+}
+
+button {
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    height: 100%;
+    font-weight: 700;
+    color: steelblue;
+    letter-spacing: 1px;
+    font-size: inherit;
+    transition: all 0.3s;
+    outline: none;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    color: white;
+    background: steelblue;
+}
+
+.selected {
+    background: steelblue;
+    color: white;
+}
+
+#canvas-container {
+    flex-grow: 1;
+}
+
+#message {
+    display: inline-block;
+    width: 20%;
+}
