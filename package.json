@@ -1,0 +1,17 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "A simple but addictive game that tests how well you know your red-blue-green in hexidecimal format",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.12.7",
+    "three": "^0.173.0",
+    "vite": "^6.1.1"
+  }
+}
