@@ -1,4 +1,3 @@
-
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import confetti from 'canvas-confetti';
@@ -13,7 +12,7 @@ class ColorGame {
         this.resetButton = document.getElementById('reset');
         this.modeButtons = document.querySelectorAll('.mode');
         this.numCubes = 6;
-        
+
         this.setupScene();
         this.setupGame();
         this.animate();
@@ -25,26 +24,26 @@ class ColorGame {
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.gameContainer.appendChild(this.renderer.domElement);
-        
+
         // Add raycaster
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
-        
+
         // Add click event listener
         this.renderer.domElement.addEventListener('click', (event) => {
             this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
             this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-            
+
             this.raycaster.setFromCamera(this.mouse, this.camera);
             const intersects = this.raycaster.intersectObjects(this.cubes);
-            
+
             if (intersects.length > 0) {
                 this.checkColor(intersects[0].object);
             }
         });
 
         this.camera.position.z = 5;
-        
+
         // Add ambient light
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         this.scene.add(ambientLight);
@@ -59,7 +58,7 @@ class ColorGame {
 
     setupGame() {
         this.resetButton.addEventListener('click', () => this.reset());
-        
+
         this.modeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 this.modeButtons.forEach(btn => btn.classList.remove('selected'));
@@ -92,15 +91,15 @@ class ColorGame {
 
         // Create new cubes
         const geometry = new THREE.BoxGeometry(1, 1, 1);
-        
+
         for (let i = 0; i < this.colors.length; i++) {
             const material = new THREE.MeshPhongMaterial({ color: this.colors[i] });
             const cube = new THREE.Mesh(geometry, material);
-            
+
             const row = Math.floor(i / 3);
             const col = i % 3;
             cube.position.set(col * 2 - 2, row * -2 + 2, 0);
-            
+
             cube.userData.color = this.colors[i];
             this.cubes.push(cube);
             this.scene.add(cube);
@@ -127,14 +126,14 @@ class ColorGame {
             this.messageDisplay.textContent = 'Correct!';
             this.resetButton.textContent = 'Play Again?';
             this.changeColors(this.pickedColor);
-            
+
             // Trigger confetti
             confetti({
                 particleCount: 150,
                 spread: 180,
                 origin: { y: 0.6 }
             });
-            
+
             // Stop the animation
             this.isGameOver = true;
         } else {
@@ -163,14 +162,14 @@ class ColorGame {
 
     animate() {
         requestAnimationFrame(() => this.animate());
-        
+
         if (!this.isGameOver) {
             this.cubes.forEach(cube => {
                 cube.rotation.x += 0.01;
                 cube.rotation.y += 0.01;
             });
         }
-        
+
         this.renderer.render(this.scene, this.camera);
     }
 }
