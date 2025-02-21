@@ -24,6 +24,23 @@ class ColorGame {
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.gameContainer.appendChild(this.renderer.domElement);
+        
+        // Add raycaster
+        this.raycaster = new THREE.Raycaster();
+        this.mouse = new THREE.Vector2();
+        
+        // Add click event listener
+        this.renderer.domElement.addEventListener('click', (event) => {
+            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            
+            this.raycaster.setFromCamera(this.mouse, this.camera);
+            const intersects = this.raycaster.intersectObjects(this.cubes);
+            
+            if (intersects.length > 0) {
+                this.checkColor(intersects[0].object);
+            }
+        });
 
         this.camera.position.z = 5;
         
@@ -83,8 +100,6 @@ class ColorGame {
             cube.position.set(col * 2 - 2, row * -2 + 1, 0);
             
             cube.userData.color = this.colors[i];
-            cube.addEventListener('click', () => this.checkColor(cube));
-            
             this.cubes.push(cube);
             this.scene.add(cube);
         }
