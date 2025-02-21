@@ -64,7 +64,7 @@ class ColorGame {
             button.addEventListener('click', () => {
                 this.modeButtons.forEach(btn => btn.classList.remove('selected'));
                 button.classList.add('selected');
-                this.numCubes = button.textContent === 'Easy' ? 3 : 6;
+                this.numCubes = button.textContent === 'Easy' ? 3 : 9;
                 this.reset();
             });
         });
@@ -99,7 +99,7 @@ class ColorGame {
             
             const row = Math.floor(i / 3);
             const col = i % 3;
-            cube.position.set(col * 2 - 2, row * -2 + 1, 0);
+            cube.position.set(col * 2 - 2, row * -2 + 2, 0);
             
             cube.userData.color = this.colors[i];
             this.cubes.push(cube);
