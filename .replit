@@ -1,3 +1,4 @@
+modules = ["nodejs-20"]
 [nix]
 channel = "stable-24_05"
 
@@ -11,3 +12,7 @@ author = 38478661
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npx vite"
+
+[[ports]]
+localPort = 5173
+externalPort = 80
