@@ -16,3 +16,7 @@ args = "npx vite"
 [[ports]]
 localPort = 5173
 externalPort = 80
+
+[deployment]
+run = ["sh", "-c", "npm run preview"]
+build = ["sh", "-c", "npm run build"]
