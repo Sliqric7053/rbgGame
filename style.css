@@ -1,0 +1,57 @@
+/* Basic styles for the RGB game */
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+}
+
+#game-container {
+  margin-top: 20px;
+}
+
+#color-display {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+}
+
+#guess-input {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+#submit-button {
+  margin-left: 5px;
+  padding: 5px 10px;
+}
+
+#message {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#color-display {
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  border: 2px solid black;
+}
+
+#options-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#options-container button {
+  width: 100px;
+  height: 50px;
+  margin: 0 10px;
+  border: none;
+  cursor: pointer;
+}
